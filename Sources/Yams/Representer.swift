@@ -335,7 +335,7 @@ private extension FloatingPoint where Self: CVarArg {
     var formattedStringForCodable: String {
         // Since `NumberFormatter` creates a string with insufficient precision for Decode,
         // it uses with `String(format:...)`
-        let string = String(format: "%.*g", DBL_DECIMAL_DIG, self)
+        let string = String(format: "%.*g", _Builtin_float.DBL_DECIMAL_DIG, self)
         // "%*.g" does not use scientific notation if the exponent is less than –4.
         // So fallback to using `NumberFormatter` if string does not uses scientific notation.
         guard string.lazy.suffix(5).contains("e") else {
